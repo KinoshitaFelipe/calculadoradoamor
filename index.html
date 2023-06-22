@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora do Amor</title>
+    <style>
+        .label-text {
+            font-family: Candara, sans-serif;
+            color: #ffffff; 
+            font-size: 20px; 
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-family: Candara, sans-serif; 
+            color: #ffffff; 
+            font-size: 20px;
+        }
+    </style>
+    <style>
+        .label-text {
+            font-family: Candara, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            text-align: center; 
+            display: block;
+            margin-top: 10px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-family: Candara, sans-serif; 
+            color: #ffffff; 
+            font-size: 16px;
+        }
+       
+        .btn-restart {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #ee3884;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-family: Candara, sans-serif;
+            font-size: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora do Amor</h1>
+        
+        <form id="loveCalculatorForm">
+            <label for="name1">
+                <span class="label-text">Nome da primeira pessoa:</span>
+                <input type="text" id="name1" class="input-field" required>
+            </label>
+            
+            <label for="name2">
+                <span class="label-text">Nome da segunda pessoa:</span>
+                <input type="text" id="name2" class="input-field" required>
+            </label>
+            
+            <button type="submit">Calcular</button>
+            <button class="btn-restart" onclick="location.reload()">Reiniciar</button>
+        </form>
+        
+        <div class="result" id="result"></div>
+    </div>
+     
+    <script>
+
+        document.getElementById("loveCalculatorForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var name1 = document.getElementById("name1").value.toLowerCase();
+            var name2 = document.getElementById("name2").value.toLowerCase();
+
+            if (name1 && name2) {
+                var combinedNames = name1 + name2;
+                var loveScore = 0;
+
+                for (var i = 0; i < combinedNames.length; i++) {
+                    loveScore += combinedNames.charCodeAt(i);
+                }
+
+                var lovePercentage = loveScore % 100;
+
+                document.getElementById("result").innerHTML = "<div class='heart level-" + Math.ceil(lovePercentage / 10) + "'></div><div class='percentage'>" + lovePercentage + "%</div>";
+            } else {
+                document.getElementById("result").textContent = "Por favor, digite os nomes das duas pessoas.";
+            }
+        });
+    </script>
+</body>
+</html>
